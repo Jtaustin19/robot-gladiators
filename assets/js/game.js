@@ -43,26 +43,37 @@ var startGame = function(){
     endGame();
 };
 
-// function to end the entire game
 var endGame = function() {
-    // if player is still alive, player wins!
-    if (playerInfo.health > 0) {
-        window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
-    }
-    else {
-        window.alert("You've lost your robot in battle.");
-    }
+  window.alert("The game has now ended. Let's see how you did!");
 
-    var playAgainConfirm = window.confirm("Would you like to play again?");
+  // check localstorage for highscore, if it's not there, use 0
+  var highscore = localStorage.getItem("highscore") || 0
 
-    if (playAgainConfirm) {
-        // restart the game
-        startGame();
+  if (playerInfo.money > highscore) {
+    localStorage.setItem("highscore", playerInfo.money);
+    localStorage.setItem("name", playerInfo.name);
+    alert(
+      playerInfo.name +
+      " now has the high score of " +
+      playerInfo.money +
+      "!"
+    );
+  } else {
+    alert(
+      playerInfo.name +
+      " did not beat the high score of " +
+      playerInfo.money +
+      "!"
+    );
+  }
+
+  var playAgainConfirm = window.confirm("Would you like to play again?");
+  if (playAgainConfirm) {
+      startGame();
+  } else {
+      window.alert("Thank you for playing Robot Gladiators! Come back soon!");
     }
-    else {
-        window.alert("Thank you for playing Robot Gladiators! Come back soon!");
-    }
-}
+};
 
 var fightOrSkip = function() {
   // ask palyer if they'd like to fight or skip using fightOrSkip function
@@ -122,8 +133,8 @@ var fight = function(enemy) {
         enemy.name + 
         ". " + 
         enemy.name + 
-        " now has " + 
-        enemy.health + 
+        " now has " 
+        + enemy.health + 
         " health remaining."
       );
   
@@ -132,7 +143,7 @@ var fight = function(enemy) {
          window.alert(enemy.name + ' has died!');
 
          // award player money for winning
-         playerInfo.money = playerInfo.money + 20;
+         playerInfo.money = playerInfo.money + 20; 
 
          // leave while() loop since enemy is dead
          break;
@@ -142,6 +153,7 @@ var fight = function(enemy) {
       // player gets attacked first
   } else {
       var damage = randomNumber(enemy.attack - 3, enemy.attack);
+
       // remove players's health by subtracting the amount set in the damage variable
       playerInfo.health = Math.max(0, playerInfo.health - damage);
       console.log(
@@ -154,7 +166,7 @@ var fight = function(enemy) {
         playerInfo.health + 
         " health remaining."
       );
-      
+
       // check player's health
       if (playerInfo.health <= 0) {
         window.alert(playerInfo.name + ' has died!');
