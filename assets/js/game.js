@@ -166,8 +166,7 @@ var fight = function(enemy) {
 
         fight(pickedEnemyObj);
         break;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
       } else {
         window.alert(playerName + ' still has ' + playerHealth + ' health left.');
       } 
