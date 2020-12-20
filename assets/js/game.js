@@ -167,29 +167,11 @@ var fight = function(enemy) {
         fight(pickedEnemyObj);
         break;
 
-      } else {
-        window.alert(playerName + ' still has ' + playerHealth + ' health left.');
-      } 
-    };
-=======
-        else { 
-            window.alert("You have lost your robot in batlle! Game Over!");
-          break;
-        }
-      } else {
-        window.alert(playerName + ' still has ' + playerHealth + ' health left.');
-      } 
-    }
-  };
->>>>>>> develop
-=======
-        
         } else {
         window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
         } 
     };
 
->>>>>>> develop
 // execute function
 for (var i = 0; i < enemyNames.length; i++) {
     var pickedEnemyName = enemyNames[i];
